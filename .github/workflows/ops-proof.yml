@@ -99,7 +99,7 @@ jobs:
             --iterations "$SOAK_ITERS" \
             --out .run/multi_worker_soak_evidence.json
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: release2-multi-worker-soak-evidence
@@ -151,7 +151,7 @@ jobs:
           python3 scripts/postgres_pitr_drill.py \
             --out .run/quarterly_pg_pitr_evidence.json
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: quarterly-postgres-restore-proof
