@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir -p .run
           pytest -v --junitxml=.run/pytest-junit.xml 2>&1 | tee .run/pytest.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: pytest-results
@@ -68,7 +68,7 @@ jobs:
           python3 scripts/test_postgres_boot.py --base-dsn "$AIBRIDGE_PG_BASE_DSN" --keep
           python3 scripts/backup_restore.py drill --pg-dsn "$AIBRIDGE_PG_BOOT_DSN" --restore-dsn "$AIBRIDGE_PG_DRILL_DSN" --evidence-out .run/postgres_restore_drill_evidence.json
           python3 scripts/postgres_pitr_drill.py --out .run/postgres_pitr_drill_evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: postgres-restore-drill-evidence
@@ -91,7 +91,7 @@ jobs:
         run: |
           mkdir -p .run
           python3 tests/unit/test_deployment_config.py -v 2>&1 | tee .run/deployment-config-test.log
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: deployment-config-test-log
@@ -115,7 +115,7 @@ jobs:
         run: |
           mkdir -p .run
           python scripts/macos_launchd_e2e.py --out .run/macos_launchd_e2e_evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: macos-launchd-e2e-evidence
@@ -156,7 +156,7 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path .run | Out-Null
           python scripts/webrtc_production_e2e.py --require-native-agent --out .run/webrtc_production_e2e_evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: libwebrtc-e2e-evidence
@@ -214,7 +214,7 @@ jobs:
           pytest -q --junitxml=.run/pytest-windows-junit.xml
       - name: Release 1 Windows installer & agent E2E
         run: python scripts/windows_installer_e2e.py --out .run/windows_installer_e2e_evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: windows-e2e-evidence
@@ -254,7 +254,7 @@ jobs:
         run: |
           mkdir -p .run
           python scripts/webrtc_production_e2e.py --require-browser-peer --out .run/webrtc_production_e2e_evidence.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: release-1-gate-evidence
@@ -320,7 +320,7 @@ jobs:
       - name: Validate production Dockerfile build
         run: |
           docker build -f deployment/docker/Dockerfile.prod -t ai-bridge:ci-check .
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: release-2-supply-chain-evidence

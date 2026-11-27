@@ -94,7 +94,7 @@ jobs:
             --out-dir .run/release-evidence \
             --evidence-dir .run
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: release-bundle-${{ github.ref_name }}
           path: |
@@ -117,7 +117,7 @@ jobs:
       - name: Build single-file AIBridgeSetup.exe installer
         shell: pwsh
         run: pwsh scripts/build_windows_installer.ps1 -OutDir .run/windows-release
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: windows-installer-${{ github.ref_name }}
           path: |
@@ -152,7 +152,7 @@ jobs:
           rm -rf .run/linux-release/pkg
           .run/linux-release/ai-bridge-linux-tui tui --snapshot
           (cd .run/linux-release && sha256sum ai-bridge-linux-tui > ai-bridge-linux-tui.sha256)
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: linux-terminal-app-${{ github.ref_name }}
           path: |
@@ -187,7 +187,7 @@ jobs:
           rm -rf .run/macos-release/pkg
           .run/macos-release/ai-bridge-macos-tui tui --snapshot
           shasum -a 256 .run/macos-release/ai-bridge-macos-tui > .run/macos-release/ai-bridge-macos-tui.sha256
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: macos-terminal-app-${{ github.ref_name }}
           path: |
@@ -238,7 +238,7 @@ jobs:
             cp "agent-desktop-src/target/release/${{ matrix.lib_name }}" "out/${{ matrix.target }}-${{ matrix.lib_name }}"
           fi
           (cd out && sha256sum * > "agent-desktop-${{ matrix.target }}.sha256")
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: agent-desktop-${{ matrix.target }}-${{ github.ref_name }}
           path: out/
@@ -288,7 +288,7 @@ jobs:
             cp "$BIN_PATH" "out/relay-engine-${{ matrix.target }}${EXT}"
             (cd out && sha256sum * > "relay-engine-${{ matrix.target }}.sha256")
           fi
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: screen-relay-${{ matrix.target }}-${{ github.ref_name }}
           path: out/
