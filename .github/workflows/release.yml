@@ -28,7 +28,7 @@ jobs:
   build-sign-and-bundle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -108,7 +108,7 @@ jobs:
     name: Build Windows C# WPF GUI Setup (AIBridgeSetup.exe)
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "9.0.x"
@@ -129,7 +129,7 @@ jobs:
     name: Build Linux Interactive Terminal Studio (ai-bridge-linux-tui)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -164,7 +164,7 @@ jobs:
     name: Build macOS Interactive Terminal Studio (ai-bridge-macos-tui)
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -219,7 +219,7 @@ jobs:
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Checkout vercel-labs/agent-desktop
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: vercel-labs/agent-desktop
           path: agent-desktop-src
@@ -263,7 +263,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout vercel-labs/screen-relay
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: vercel-labs/screen-relay
           path: screen-relay-src
