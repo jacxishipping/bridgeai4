@@ -139,7 +139,7 @@ def probe_wasapi_loopback() -> dict[str, Any]:
             "reason": "ok",
         }
     except ImportError:
-        result["reason"] = "wasapi_driver_not_installed"
+        result["reason"] = "soundcard_or_pyaudiowpatch_not_installed"
     except Exception as exc:  # noqa: BLE001
         result["reason"] = f"probe_failed:{type(exc).__name__}"
         log.debug("WASAPI probe failed: %s", exc)

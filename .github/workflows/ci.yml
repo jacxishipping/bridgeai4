@@ -128,8 +128,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - name: Install Python package
-        run: pip install -e ".[dev]"
+      - name: Install Python package (dev + webrtc/aiortc for plane peer harness)
+        run: pip install -e ".[dev,webrtc]"
       # NOTE: -DCMAKE_POLICY_VERSION_MINIMUM=3.5 must NOT be passed here.
       # The Windows runner's shell mangles the dotted value ("3.5" arrives
       # as "3" plus a stray ".5" argument, and CMake rejects it: Invalid

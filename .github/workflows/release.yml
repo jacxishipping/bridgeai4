@@ -198,6 +198,8 @@ jobs:
   bundle-agent-desktop:
     name: Bundle optional agent-desktop (${{ matrix.os }})
     if: inputs.bundle_agent_desktop == true || vars.AI_BRIDGE_BUNDLE_AGENT_DESKTOP == '1'
+    # Upstream vercel-labs/agent-desktop builds are best-effort; never block core release publish.
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
@@ -247,6 +249,8 @@ jobs:
   bundle-screen-relay:
     name: Bundle optional screen-relay engine (${{ matrix.os }})
     if: inputs.bundle_screen_relay == true || vars.AI_BRIDGE_BUNDLE_SCREEN_RELAY == '1'
+    # Upstream vercel-labs/screen-relay builds are best-effort; never block core release publish.
+    continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
